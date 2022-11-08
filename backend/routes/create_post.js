@@ -5,6 +5,11 @@ const mongoose = require("mongoose");
 
 router.use(express.json());
 
+router.get("/", async (req, res) => {
+  const posts = await Post.find();
+  res.send(posts);
+});
+
 router.post("/create-post", async (req, res) => {
   // current timestamp in milliseconds
   let ts = Date.now();
