@@ -100,9 +100,7 @@ function classNames(...classes) {
 export default function Example(props) {
   return (
     <Popover className="relative bg-white">
-      <div>
-        <p className="text-2xl font-medium">Prahas Pattem</p>
-      </div>
+      <div>{/* <p className="text-2xl font-medium">Prahas Pattem</p> */}</div>
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
@@ -112,7 +110,7 @@ export default function Example(props) {
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
               alt=""
             /> */}
-            <p className="font-medium"></p>
+            <p className="font-medium">Today's date</p>
             {/* <p className="text-base font-medium text-gray-500 hover:text-gray-900"> */}
             {/* </a> */}
           </div>
@@ -210,10 +208,16 @@ export default function Example(props) {
               Create Blog Posts
             </a>
             <a
-              href="/resume"
+              href="/blogs"
               className="text-base font-medium text-gray-500 hover:text-gray-900"
             >
               My Blogs
+            </a>
+            <a
+              href="/socials"
+              className="text-base font-medium text-gray-500 hover:text-gray-900"
+            >
+              Socials
             </a>
             {/* <a
               href="#"
