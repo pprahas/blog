@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import "./App.css";
 import ViewBlogs from "./pages/ViewBlogs";
 import Socials from "./pages/Socials";
+import CreateBlog from "./pages/CreateBlogs";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
 
@@ -35,6 +36,10 @@ function App() {
       <Routes>
         <Route path="/" element={<ViewBlogs data={posts} />}></Route>
         <Route path="/blogs" element={<ViewBlogs data={posts} />}></Route>
+        <Route
+          path="/create_blog"
+          element={<CreateBlog data={posts} />}
+        ></Route>
         <Route path="/socials" element={<Socials />}></Route>
       </Routes>
     </BrowserRouter>

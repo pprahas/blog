@@ -30,7 +30,7 @@ export default function Example(props) {
                   </svg> */}
             {topics}
           </span>
-          <span className="text-sm">{date}</span>
+          <span className="text-sm">{date.slice(0, 10)}</span>
         </div>
         <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           <a href="#">{title}</a>
