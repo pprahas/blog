@@ -9,15 +9,25 @@ import axios from "axios";
 function App() {
   const [posts, setPosts] = useState(null);
 
+  // useEffect(() => {
+  //   axios("http://localhost:9090/blog/")
+  //     .then((response) => {
+  //       // console.log(response.data);
+  //       setPosts(response.data);
+  //       console.log(posts);
+  //     })
+  //     .catch((error) => {
+  //       // console.log(error);
+  //     });
+  // }, []);
+
   useEffect(() => {
-    axios("http://localhost:9090/blog/")
-      .then((response) => {
-        // console.log(response.data);
-        setPosts(response.data);
-      })
-      .catch((error) => {
-        // console.log(error);
-      });
+    (async function () {
+      const resp = await fetch("http://localhost:9090/blog/");
+      const json = await resp.json();
+      setPosts(json);
+      // console.log(json);
+    })();
   }, []);
 
   return (

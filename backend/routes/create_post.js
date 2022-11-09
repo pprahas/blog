@@ -8,7 +8,7 @@ router.use(express.json());
 router.get("/", async (req, res) => {
   try {
     const posts = await Post.find();
-    res.send(posts);
+    res.send(res.json(posts));
     // res.send(res.json(posts));
     // res.send(res.json({ hello: "world" }));
     // res.send({ bye: "world" });

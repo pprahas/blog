@@ -2,13 +2,17 @@ import Navbar from "../components/Navbar";
 export default function Example(props) {
   console.log("going in", props.data);
 
+  if (props.data == null) {
+    return <h1>loading</h1>;
+  }
+
   const eachPost = props.data.map((d) => {
     const topics = Object.values(d)[1];
     const date = Object.values(d)[2];
     const title = Object.values(d)[3];
     const content = Object.values(d)[4];
     return (
-      <article className="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <article className="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mb-32">
         <div className="flex justify-between items-center mb-5 text-gray-500">
           <span className="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
             {/* <svg
@@ -43,7 +47,7 @@ export default function Example(props) {
                   /> */}
             {/* <span className="font-medium dark:text-white">Jese Leos</span> */}
           </div>
-          <a
+          {/* <a
             href="#"
             className="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline"
           >
@@ -60,7 +64,7 @@ export default function Example(props) {
                 clipRule="evenodd"
               />
             </svg>
-          </a>
+          </a> */}
         </div>
       </article>
     );
