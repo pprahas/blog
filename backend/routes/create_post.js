@@ -6,8 +6,11 @@ const mongoose = require("mongoose");
 router.use(express.json());
 
 router.get("/", async (req, res) => {
-  const posts = await Post.find();
-  res.send(posts);
+  try {
+    const posts = await Post.find();
+    // res.send(res.json(posts));
+    res.send(res.json({ hello: "world" }));
+  } catch (error) {}
 });
 
 router.post("/create-post", async (req, res) => {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import ViewBlogs from "./pages/ViewBlogs";
@@ -6,8 +6,14 @@ import Socials from "./pages/Socials";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  useEffect(() => {
+    (async function () {
+      const data = await fetch("http://localhost:9090/blog/");
+      const jsonData = await data.json();
+      console.log("here");
+      console.log(jsonData);
+    });
+  });
   return (
     <BrowserRouter>
       <Routes>
