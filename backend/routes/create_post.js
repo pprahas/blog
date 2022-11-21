@@ -29,6 +29,13 @@ router.post("/create-post", async (req, res) => {
   try {
     const postData = req.body;
 
+    const correctPass = "prado156";
+
+    if (postData.password != correctPass) {
+      alert("Incorrect Password");
+      return res.status(500).json({ msg: "uh uh" });
+    }
+
     const newPost = new Post(
       {
         _id: new mongoose.Types.ObjectId(), // not part of request

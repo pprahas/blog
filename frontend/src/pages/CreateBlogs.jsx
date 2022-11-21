@@ -5,6 +5,7 @@ export default function Example(props) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [topics, setTopics] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,6 +15,7 @@ export default function Example(props) {
         topics,
         title,
         content,
+        password,
       })
       .then((res) => alert("Post Created."))
       .catch((error) => alert("Post not created."));
@@ -58,6 +60,21 @@ export default function Example(props) {
                     type="text"
                     onChange={(e) => setContent(e.target.value)}
                     value={content}
+                  />
+                  {/* <input
+                    // className="h-32 ml-6 relative block w-64 appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-base"
+                    className="h-32 ml-6 w-64 rounded-t-md border border-gray-300 px-3  text-gray-900 placeholder-gray-500   focus:ring-indigo-500 sm:text-base"
+                    type="text"
+                  /> */}
+                </h2>
+                <h2 className="ml-20 flex text-2xl lg:text-3xl tracking-tight font-semibold text-gray-900 dark:text-white">
+                  Password -{" "}
+                  <input
+                    className="ml-6 relative block w-64 appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-base"
+                    // className="ml-6 relative block w-64 appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-base"
+                    type="text"
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
                   />
                   {/* <input
                     // className="h-32 ml-6 relative block w-64 appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-base"
