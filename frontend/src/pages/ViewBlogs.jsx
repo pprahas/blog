@@ -1,12 +1,44 @@
+import axios from "axios";
+import { useState } from "react";
 import Navbar from "../components/Navbar";
 export default function Example(props) {
-  console.log("going in", props.data);
+  const [id, setId] = useState("000");
 
   if (props.data == null) {
     return <h1>loading</h1>;
   }
+  const deletePost = async (e) => {
+    // e.preventDefault();
+    console.log("howdy2");
+    console.log(id);
+    axios
+      .post("http://localhost:9090/blog/delete-post", {
+        id: e,
+      })
+      .then((res) => {
+        alert("Post deleted.");
+        window.location.reload();
+      })
+      .catch((error) => alert("Post not deleted."));
+  };
+
+  const modifyPost = async (e) => {
+    // e.preventDefault();
+    console.log("howdy2");
+    console.log(id);
+    axios
+      .post("http://localhost:9090/blog/modify-post", {
+        id: e,
+      })
+      .then((res) => {
+        alert("Post Modified.");
+        window.location.reload();
+      })
+      .catch((error) => alert("Post not modified."));
+  };
 
   const eachPost = props.data.map((d) => {
+    const id_in = Object.values(d)[0];
     const topics = Object.values(d)[1];
     const date = Object.values(d)[2];
     const title = Object.values(d)[3];
@@ -19,7 +51,7 @@ export default function Example(props) {
                     className="mr-1 w-3 h-3"
                     fill="currentColor"
                     viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns="http://www.w3.org/2000/svg" 
                   >
                     <path
                       fillRule="evenodd"
@@ -38,14 +70,42 @@ export default function Example(props) {
         <p className="mb-5 font-light text-gray-500 dark:text-gray-400">
           {content}
         </p>
+
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-4">
             {/* <img
-                    className="w-7 h-7 rounded-full"
-                    src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
-                    alt="Jese Leos avatar"
-                  /> */}
-            {/* <span className="font-medium dark:text-white">Jese Leos</span> */}
+              className="w-7 h-7 rounded-full"
+              src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
+              alt="Jese Leos avatar"
+            /> */}
+            <button
+              // onClick={() => {
+              //   deletePost;
+              //   setId(id_in);
+              // }}
+              onClick={() => {
+                // console.log(id_in);
+                // setId(id_in);
+                deletePost(id_in);
+              }}
+              className="font-medium dark:text-white"
+            >
+              Delete
+            </button>
+            <button
+              // onClick={() => {
+              //   deletePost;
+              //   setId(id_in);
+              // }}
+              onClick={() => {
+                // console.log(id_in);
+                // setId(id_in);
+                modifyPost(id_in);
+              }}
+              className="font-medium dark:text-white"
+            >
+              Modify
+            </button>
           </div>
           {/* <a
             href="#"
@@ -80,7 +140,7 @@ export default function Example(props) {
               Blog Posts
             </h2>
             <p className="font-light text-gray-500 sm:text-xl dark:text-gray-400">
-              All of my blog posts, which are mostly about programing.
+              All of my blog posts, which are mostly about programming.
             </p>
           </div>
           {eachPost}

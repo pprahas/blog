@@ -55,4 +55,30 @@ router.post("/create-post", async (req, res) => {
   }
 });
 
+router.post("/delete-post", async (req, res) => {
+  try {
+    const id = req.body.id;
+    if (id == "000") {
+      return res.status(400);
+    }
+    const find = await Post.findByIdAndDelete(id);
+    return res.status(200).json({ msg: "Post deleted successfully." });
+  } catch (error) {
+    return res.status(500).json({ msg: "Post deletion failed." });
+  }
+});
+
+router.post("/modify-post", async (req, res) => {
+  try {
+    const { id } = req.body;
+    if (id == "000") {
+      return res.status(400);
+    }
+    const find = await Post.findByIdAndDelete(id);
+    return res.status(200).json({ msg: "Post deleted successfully." });
+  } catch (error) {
+    return res.status(500).json({ msg: "Post deletion failed." });
+  }
+});
+
 module.exports = router;
