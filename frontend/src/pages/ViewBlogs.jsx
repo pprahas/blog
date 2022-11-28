@@ -3,6 +3,7 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 export default function Example(props) {
   const [id, setId] = useState("000");
+  const [modify, setModify] = useState("");
 
   if (props.data == null) {
     return <h1>loading</h1>;
@@ -29,12 +30,16 @@ export default function Example(props) {
     axios
       .post("http://localhost:9090/blog/modify-post", {
         id: e,
+        content: modify,
       })
       .then((res) => {
         alert("Post Modified.");
         window.location.reload();
       })
-      .catch((error) => alert("Post not modified."));
+      .catch((error) => {
+        console.log(error);
+        alert("Post not modified.");
+      });
   };
 
   const eachPost = props.data.map((d) => {
@@ -92,20 +97,28 @@ export default function Example(props) {
             >
               Delete
             </button>
-            <button
-              // onClick={() => {
-              //   deletePost;
-              //   setId(id_in);
-              // }}
-              onClick={() => {
-                // console.log(id_in);
-                // setId(id_in);
-                modifyPost(id_in);
-              }}
-              className="font-medium dark:text-white"
-            >
-              Modify
-            </button>
+            <div className="flex">
+              <button
+                // onClick={() => {
+                //   deletePost;
+                //   setId(id_in);
+                // }}
+                onClick={() => {
+                  // console.log(id_in);
+                  // setId(id_in);
+                  modifyPost(id_in);
+                }}
+                className="font-medium dark:text-white"
+              >
+                Modify -
+              </button>
+              <input
+                className="ml-2 appearance-none rounded-none rounded-t-md border-8 border-red-1000 flex tracking-tight font-semibold text-gray-900 dark:text-white"
+                type="text"
+                onChange={(e) => setModify(e.target.value)}
+                value={modify}
+              />
+            </div>
           </div>
           {/* <a
             href="#"

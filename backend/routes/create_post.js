@@ -58,9 +58,6 @@ router.post("/create-post", async (req, res) => {
 router.post("/delete-post", async (req, res) => {
   try {
     const id = req.body.id;
-    if (id == "000") {
-      return res.status(400);
-    }
     const find = await Post.findByIdAndDelete(id);
     return res.status(200).json({ msg: "Post deleted successfully." });
   } catch (error) {
@@ -70,11 +67,19 @@ router.post("/delete-post", async (req, res) => {
 
 router.post("/modify-post", async (req, res) => {
   try {
-    const { id } = req.body;
-    if (id == "000") {
-      return res.status(400);
-    }
-    const find = await Post.findByIdAndDelete(id);
+    let ts = Date.now();
+
+    let date_ob = new Date(ts);
+    let date = date_ob.getDate();
+    let month = date_ob.getMonth() + 1;
+    let year = date_ob.getFullYear();
+
+    let todayDate = month + "/" + date + "/" + year;
+    const { id, content } = req.body;
+    const post = await Post.findById(id);
+    post.content = content;
+    post.date = todayDate;
+    await post.save();
     return res.status(200).json({ msg: "Post deleted successfully." });
   } catch (error) {
     return res.status(500).json({ msg: "Post deletion failed." });
